@@ -1,8 +1,8 @@
-package hello;
+package sync.server.controller;
 
-import hello.storage.StorageException;
-import hello.storage.StorageFileNotFoundException;
-import hello.storage.StorageService;
+import sync.server.storage.StorageException;
+import sync.server.storage.StorageFileNotFoundException;
+import sync.server.storage.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;

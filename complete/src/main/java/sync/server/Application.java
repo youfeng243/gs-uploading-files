@@ -1,7 +1,7 @@
-package hello;
+package sync.server;
 
-import hello.storage.StorageProperties;
-import hello.storage.StorageService;
+import sync.server.storage.StorageProperties;
+import sync.server.storage.StorageService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

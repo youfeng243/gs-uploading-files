@@ -1,5 +1,6 @@
 package hello;
 
+import hello.storage.StorageException;
 import hello.storage.StorageFileNotFoundException;
 import hello.storage.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,15 +48,19 @@ public class FileUploadController {
         Resource file = storageService.loadAsResource(filename);
         return ResponseEntity
                 .ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+file.getFilename()+"\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
                 .body(file);
     }
 
     @PostMapping("/")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes) {
-
-        storageService.store(file);
+        try {
+            storageService.store(file);
+        } catch (StorageException e) {
+            System.out.println("空文件...");
+            return "redirect:/";
+        }
         redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
 
